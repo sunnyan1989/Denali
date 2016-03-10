@@ -1,0 +1,13 @@
+<table class="table table-responsive table-condensed" ng-show="candidates[curCandidateIndex].status_sid!==5 && candidates[curCandidateIndex].status_sid!==6 && !job.thirdStep">
+    <tr>
+        <td colspan="2">
+            <button type="button" ng-click="updateJobStatusWithEmail('vendorf', job, candidates[curCandidateIndex])" class="btn btn-sm btn-success">Vendor Followup</button>
+            &nbsp; <button type="button" ng-click="updateJobStatusWithEmail('candidatef', job, candidates[curCandidateIndex])" class="btn btn-sm btn-success">Candidate Followup</button>
+            &nbsp; <button type="button" ng-click="updateJobStatusWithEmail('adjustrate', job, candidates[curCandidateIndex])" class="btn btn-sm btn-success">Adjust Rate</button>
+            &nbsp; <button type="button" ng-click="updateJobStatusWithEmail('interview', job, candidates[curCandidateIndex])" class="btn btn-sm btn-success">Schedule Interview</button>
+            &nbsp; <button type="button" ng-click="updateJobStatusWithEmail('selected', job, candidates[curCandidateIndex])" class="btn btn-sm btn-success">Selected</button>
+            &nbsp; <button type="button" ng-click="updateJobStatusWithEmail('nextstep', job, candidates[curCandidateIndex])" class="btn btn-sm btn-success">Next Step</button>
+        </td>
+    </tr>
+</table>
+<hr>

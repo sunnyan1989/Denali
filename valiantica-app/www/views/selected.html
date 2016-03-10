@@ -1,0 +1,82 @@
+<!-- start new of contact -->
+<div class="modal-header">
+    <h3><span data-i18n="Set Job {{master.title}} To Selected"></span></h3>
+</div>
+<form id="nextStep" name="addCMForm" class="form-horizontal form-validation" novalidate>
+    <div class="modal-body panel-body">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-responsive table-condensed">
+
+
+                    <tr class="bg-dark">
+                        <td colspan="2">
+                            <label>Client<span class="star">*</span></label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <div class="padded-row"><jobautocomplete placeholder="" selectvalue="{{master.client}}" pause="300" selectedobject="selectedClient" localdata="client" searchfields="client" titlefield="client" minlength="1" inputclass="form-control form-control-small" matchclass="highlight" /></div>
+                            <input type="hidden" ng-model="master.client" required>
+                        </td>
+                    </tr>
+
+                    <tr class="bg-dark">
+                        <th>Vendor Company<span class="star">*</span></th>
+                        <th>Vendor Contact<span class="star">*</span></th>
+                    </tr>
+
+                    <tr>
+                        <td>
+
+                            <div class="padded-row"><jobautocomplete placeholder="" selectvalue="{{master.vendor}}" pause="300" selectedobject="selectedVendor" localdata="vendor" searchfields="vendor" titlefield="vendor" minlength="1" inputclass="form-control form-control-small" matchclass="highlight" /></div>
+                            <input type="hidden" ng-model="master.vendor" required>
+
+                        </td>
+                        <td>
+                            <input type="text" id="checkcontact" class="form-control input-sm" placeholder="" data-ng-model="master.vendorcontact" required>
+                        </td>
+                    </tr>
+
+                    <tr class="bg-dark">
+                        <th>Vendor Email<span class="star">*</span></th>
+                        <th>Vendor Phone<span class="star">*</span></th>
+                    </tr>
+
+                    <tr>
+                        <td><input type="email" id="checkemail" class="form-control input-sm" placeholder="" data-ng-model="master.vendoremail" required></td>
+                        <td><input type="text" id="checkphone" class="form-control input-sm" placeholder="" data-ng-model="master.vendorphone" required></td>
+                    </tr>
+                    <tr class="bg-dark">
+                        <td colspan="2">
+                            <label>Salary Agreed<span class="star">*</span></label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <label class="ui-radio" style="float: left; margin-top: 6px;"><input class="form-control input-sm" id="hourly" data-ng-model="master.salarytype" type="radio" value="hourlyRate"><span>Hourly Rate</span></label>
+                            <label class="ui-radio" style="float: left; margin-top: 6px;"><input class="form-control input-sm" id="annual" data-ng-model="master.salarytype" type="radio" value="annualSalary"><span>Annual Salary</span></label>
+                            <input type="text" style="width:90px; float: left; margin-top: 3px;" class="form-control input-sm" placeholder="" data-ng-model="master.salary" required>
+                        </td>
+                    </tr>
+                    <tr class="bg-dark">
+                        <td colspan="2">
+                            <label>Note<span class="star">*</span></label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <textarea class="form-control" placeholder="" data-ng-model="master.note_i" rows="3" required></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <input type="hidden" data-ng-model="master.nextStep">
+        <button class="btn btn-primary" type="button" ng-click="submit(master)" data-ng-disabled="!addCMForm.$valid">Save</button>
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end new of contact -->

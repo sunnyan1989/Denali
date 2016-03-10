@@ -1,0 +1,192 @@
+<div class="page page-table">
+    <section class="panel panel-default table-dynamic">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> User List</strong></div>
+        <div class="panel-body">
+            <div class="row container">
+                <form class="form-inline" role="form" data-ng-submit="search()">
+                    <div class="form-group">
+                        <label for="name" class="sr-only">Status</label>
+                        <select class="form-control input-sm" id="status" data-ng-model="curStatus" data-ng-options="status.name for status in statusData">
+                        </select>
+                    </div>&emsp;
+                    <div class="form-group">
+                        <label for="name" class="sr-only">Name</label>
+                        <input class="form-control input-sm" id="name" placeholder="Name" data-ng-model="searchKeys.name">
+                    </div>&emsp;
+                    <div class="form-group" >
+                        <label for="userId" class="sr-only">UserID</label>
+                        <input type="text" class="form-control input-sm" id="userId" placeholder="UserID" data-ng-model="searchKeys.userId">
+                    </div>&emsp;
+                    <div class="form-group">
+                        <label for="userType" class="sr-only">UserType</label>
+                        <select class="form-control input-sm" id="userType" data-ng-model="curUserType" data-ng-options="userType.name for userType in userTypeData">
+                        </select>
+                    </div>&emsp;
+                    <button type="submit" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+            </div>
+            <div class="row" data-ng-controller='TableCtrl'>
+                <div class="table-filters">
+                    <div class="row">
+                        <div class="col-sm-8">
+                            <button class="btn btn-sm btn-primary" data-ng-click="add()">New</button>
+                        </div>
+                        <div class="col-sm-4">
+                            <form>
+                                <input type="text"
+                                       placeholder="search"
+                                       class="form-control input-sm"
+                                       data-ng-model="filterKeywords"
+                                       data-ng-keyup="filterData()">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-striped table-responsive table-condensed" my-table-data="users">
+                    <thead>
+                        <tr class="bg-dark">
+                            <th><div class="th">
+                    </div>
+                    </th>
+                    <th><div class="th">
+                        Status
+                    </div></th>
+                    <th><div class="th">
+                        Picture
+                    </div></th>
+                    <th><div class="th">
+                        Name
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('name')"
+                              data-ng-class="{active: row == 'name'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-name')"
+                              data-ng-class="{active: row == '-name'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        UserID
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click="order('userid')"
+                              data-ng-class="{active: row == 'userid'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click="order('-userid')"
+                              data-ng-class="{active: row == '-userid'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        Start Date
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('startdate')"
+                              data-ng-class="{active: row == 'startdate'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-startdate')"
+                              data-ng-class="{active: row == '-startdate'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        End Date
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('enddate')"
+                              data-ng-class="{active: row == 'enddate'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-enddate')"
+                              data-ng-class="{active: row == '-enddate'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        User
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('isuser')"
+                              data-ng-class="{active: row == 'isuser'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-isuser')"
+                              data-ng-class="{active: row == '-isuser'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        Admin
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('istenantadmin')"
+                              data-ng-class="{active: row == 'istenantadmin'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-istenantadmin')"
+                              data-ng-class="{active: row == '-istenantadmin'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        For CM
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('isforcm')"
+                              data-ng-class="{active: row == 'isforcm'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-isforcm')"
+                              data-ng-class="{active: row == '-isforcm'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        For REQ
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('isforeq')"
+                              data-ng-class="{active: row == 'isforeq'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-isforeq')"
+                              data-ng-class="{active: row == '-isforeq'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        Roles
+                        <span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+                              data-ng-click=" order('roleNames')"
+                              data-ng-class="{active: row == 'roleNames'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+                              data-ng-click=" order('-roleNames')"
+                              data-ng-class="{active: row == '-roleNames'}"></span>
+                    </div></th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="user in currentPageData">
+                            <td><a class="a_cursor" data-ng-click='edit(user)' data-ng-show='user.sid != 1'><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td>{{statusList[user.statusid]}}</td>
+                            <td><img data-ng-src="{{user.picturelink?user.picturelink:'/files/profiles/1/default_profile.jpg'}}" style="height:30px; max-width:30px;"></td>
+                            <td>{{user.name}}</td>
+                            <td><span ng-show="user.isuser === 1">{{user.userid}}</span></td>
+                            <td>{{user.startdate| date:'MM/dd/yyyy'}}</td>
+                            <td>{{user.enddate| date:'MM/dd/yyyy'}}</td>
+                            <td>{{user.isuser === 1? 'Yes' : 'No'}}</td>
+                            <td>{{user.istenantadmin === 1 ? 'Yes' : 'No'}}</td>
+                            <td>{{user.isforcm === 1? 'Yes' : 'No' }}</td>
+                            <td>{{user.isforeq === 1? 'Yes' : 'No' }}</td>
+                            <td>{{user.roles}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <footer class="table-footer">
+                    <div class="row">
+                        <div class="col-md-6 page-num-info">
+                            <span>
+                                Show 
+                                <select data-ng-model="numPerPage"
+                                        data-ng-options="num for num in numPerPageOpt"
+                                        data-ng-change="onNumPerPageChange()">
+                                </select> 
+                                entries per page
+                            </span>
+                        </div>
+                        <div class="col-md-6 text-right pagination-container">
+                            <pagination class="pagination-sm"
+                                        page="currentPage"
+                                        total-items="filteredData.length"
+                                        max-size="4"
+                                        on-select-page="select(page)"
+                                        items-per-page="numPerPage"
+                                        rotate="false"
+                                        boundary-links="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+            </div>
+        </div>
+        <div class="page-loading" ng-show="page_ishow">
+            <img alt="Please Wait..." data-ng-src="images/loading.gif">
+        </div>
+    </section>
+
+
+</div>

@@ -1,0 +1,43 @@
+<!-- start new of contact -->
+<div class="modal-header">
+    <h3><span data-i18n="Adjust Rate"></span></h3>
+</div>
+<form class="form-horizontal" id="nextStep" name="addCMForm">
+    <div class="modal-body panel-body">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-responsive table-condensed">
+                    
+                    <tr class="bg-dark">
+                        <td>
+                            <label>Salary</label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label class="ui-radio" style="float: left; margin-top: 6px;"><input class="form-control input-sm" name="select_salarytype" data-ng-model="job.salarytype" type="radio" value="hourlyRate" ng-checked="true"><span>Hourly Rate</span></label>
+                            <label class="ui-radio" style="float: left; margin-top: 6px;"><input class="form-control input-sm" name="select_salarytype" data-ng-model="job.salarytype" type="radio" value="annualSalary"><span>Annual Salary</span></label>
+                            <input type="text" style="width:90px; float: left; margin-top: 3px;" class="form-control input-sm" placeholder="" data-ng-model="job.salary" required>
+                        </td>
+                        
+                    </tr>
+                    <tr class="bg-dark">
+                        <td>
+                            <label>Note</label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea class="form-control" placeholder="" data-ng-model="job.note_i" rows="3"></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="submit(job)" data-ng-disabled="!addCMForm.$valid">Submit</button>
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end new of contact -->

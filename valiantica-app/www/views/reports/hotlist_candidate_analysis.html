@@ -1,0 +1,204 @@
+<div class="page page-table">
+    <section class="panel panel-default table-dynamic">
+       <div class="panel-heading">
+		<strong><span class="glyphicon glyphicon-th"></span> Hotlist Candidate Analysis Report</strong>
+		</div>
+		<div class="panel-body">
+			<div class="row container">
+				<form class="form-inline" role="form" data-ng-submit="">
+					<div class="form-group">
+						&nbsp; &nbsp; 
+						<select class="form-control input-sm" name="selectCandidate">
+							<option selected>All Candidates</option>
+							<option>John Smith</option>
+							<option>Peter Pan</option>
+							<option>Mary Smith</option>
+						</select>
+					</div>&emsp;
+					<div class="form-group">
+						&nbsp; &nbsp; 
+						<select class="form-control input-sm" name="selectCandidate">
+							<option selected>All Job Types</option>
+							<option>Software Engineer - Java</option>
+							<option>Software Engineer - .Net</option>
+							<option>Software Engineer - Mobile</option>
+							<option>QA - Manual</option>
+							<option>QA - Automation</option>
+						</select>
+					</div>&emsp;
+					<div class="form-group">
+						&nbsp; &nbsp; 
+						<select class="form-control input-sm" name="selectStatus">
+							<option selected>All Status</option>
+							<option>New</option>
+							<option>Submitted</option>
+							<option>Responded</option>
+							<option>Rejected</option>
+							<option>Selected</option>
+							<option>Closed</option>
+							<option>Inactive</option>
+						</select>
+					</div>&emsp;
+					<div class="form-group">
+						<label for="name" class="sr-only">Begin Date</label>
+						<input class="form-control input-sm" id="begindate" placeholder="Begin Date" data-ng-model="">
+					</div>&emsp;
+					<div class="form-group">
+						<label for="name" class="sr-only">End Date</label>
+						<input class="form-control input-sm" id="enddate" placeholder="End Date" data-ng-model="">
+					</div>&emsp;
+					<button type="submit" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></button>
+				</form>
+			</div>
+
+			<div class="row" data-ng-controller='TableCtrl'>	
+				<div class="table-filters">
+					<div class="row">
+						<div class="col-sm-8">
+							<button class="btn btn-sm btn-primary" data-ng-click="">Export</button>
+						</div>
+						<div class="col-sm-4">
+							<form>
+								<input type="text"
+									placeholder="search"
+									class="form-control input-sm"
+									data-ng-model="filterKeywords"
+									data-ng-keyup="filterData()">
+							</form>
+						</div>
+					</div>
+				</div>
+
+				<table class="table table-bordered table-striped table-responsive table-condensed" my-table-data="report1">
+					<thead>
+						<tr>
+							<th><div class="th">
+								Candidate
+								<span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+									data-ng-click=" order('name') "
+									data-ng-class="{active: row == 'name'}"></span>
+								<span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+									data-ng-click=" order('-name') "
+									data-ng-class="{active: row == '-name'}"></span>
+								</div>
+							</th>
+							<th><div class="th">
+								Job Type
+								<span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+									data-ng-click=" order('name') "
+									data-ng-class="{active: row == 'name'}"></span>
+								<span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+									data-ng-click=" order('-name') "
+									data-ng-class="{active: row == '-name'}"></span>
+								</div>
+							</th>
+							<th><div class="th">
+								Status
+								<span class="glyphicon glyphicon-chevron-up glyphicon-sm"
+									data-ng-click=" order('name') "
+									data-ng-class="{active: row == 'name'}"></span>
+								<span class="glyphicon glyphicon-chevron-down glyphicon-sm"
+									data-ng-click=" order('-name') "
+									data-ng-class="{active: row == '-name'}"></span>
+								</div>
+							</th>
+							<th><div class="th">
+								Jobs Founded
+								</div>
+							</th>
+							<th><div class="th">
+								Jobs Submitted
+								</div>
+							</th>
+							<th><div class="th">
+								Jobs Responded
+								</div>
+							</th>
+							<th><div class="th">
+								Jobs Selected
+								</div>
+							</th>
+							<th><div class="th">
+								Jobs Closed
+								</div>
+							</th>
+							<th><div class="th">
+								% Responded
+								</div>
+							</th>	
+							<th><div class="th">
+								% Selected
+								</div>
+							</th>	
+							<th><div class="th">
+								% Closed
+								</div>
+							</th>	
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>John Smith</td>
+							<td>Software Engineer - Java</td>
+							<td>Submitted</td>
+							<td>123</td>
+							<td>98</td>
+							<td>20</td>
+							<td>0</td>
+							<td>0</td>
+							<td>17%</td>
+							<td>0%</td>
+							<td>0%</td>
+						</tr>
+						<tr>
+							<td>Peter Pan</td>
+							<td>Software Engineer - Java</td>
+							<td>Closed</td>
+							<td>56</td>
+							<td>56</td>
+							<td>3</td>
+							<td>1</td>
+							<td>1</td>
+							<td>7%</td>
+							<td>33%</td>
+							<td>100%</td>
+						</tr>
+						<tr>
+							<td>Mary Smith</td>
+							<td>QA - Automation</td>
+							<td>New</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0</td>
+							<td>0%</td>
+							<td>0%</td>
+							<td>0%</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<footer class="table-footer">
+					<div class="row">
+						<div class="col-md-6 page-num-info">
+							<span>
+								Show 20 entries per page
+							</span>
+						</div>
+						<div class="col-md-6 text-right pagination-container">
+							<pagination class="pagination-sm"
+                                page="currentPage"
+                                total-items="filteredData.length"
+                                max-size="4"
+                                on-select-page="select(page)"
+                                items-per-page="numPerPage"
+                                rotate="false"
+                                boundary-links="true"></pagination>
+						</div>
+					</div>
+				</footer>
+			</div>
+		</div>		
+    </section>		
+</div>

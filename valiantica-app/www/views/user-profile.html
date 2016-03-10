@@ -1,0 +1,46 @@
+<div class="page">
+    <div class="col-md-8">
+        <section class="panel panel-default">
+            <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span>&nbsp;<span data-i18n="User Profile"></span></strong></div>
+            <div class="panel-body">
+                <div class="media">
+                    <a class="pull-left" >
+                        <img alt="logo" data-ng-src="{{user.picturelink}}" style="max-width: 150px;">
+                    </a>
+                    <div class="media-body">
+                        <ul class="list-unstyled list-info">
+                            <li>
+                                <label>Name</label>
+                                {{user.name}}
+                            </li>
+                            <li>
+                                <label>User ID</label>
+                                {{user.userid}}
+                            </li>
+                            <li>
+                                <label>Start Date</label>
+                                {{user.startdate| date:'MM/dd/yyyy'}}
+                            </li>
+                            <li>
+                                <label>End Date</label>
+                                {{user.enddate| date:'MM/dd/yyyy'}}
+                            </li>
+                            <li>
+                                <label>Company Admin</label>
+                                {{user.istenantadmin? 'Yes' : 'No'}}
+                            </li>								
+                            <li>
+                                <label>Roles</label>
+                                {{user.roles}}
+                            </li>
+                        </ul>							
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <a class="a_cursor" tooltip="Edit profile" data-ng-click="edit()"><span class="glyphicon glyphicon-edit"></span></a>
+                </div>	
+                </form>	
+            </div>
+        </section>
+    </div>
+</div>

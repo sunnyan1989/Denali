@@ -1,0 +1,71 @@
+<!-- start new of contact -->
+<div class="modal-header">
+    <h3>Add Candidates to Hotlist</h3>
+</div>
+<form class="form-horizontal" id="addCandidate" name="searchForm">
+    <div class="modal-body panel-body">
+        <div class="form-group">
+            <label for="" class="col-sm-12">Selected Candidates</label>
+            <div class="col-sm-11 model-candidate-bg-div">
+
+                <table class="table">
+                    <tr data-ng-repeat="singleSkill in skills">
+                        <td>{{singleSkill.candidate}}</td>
+                        <td>{{singleSkill.name}}</td>
+                        <td>
+                            <input type="text" style="display: none;" name="Person_Skill_sid[]" ng-model="singleSkill.sid" class="form-control input-sm">
+                            <span class="glyphicon glyphicon-remove" ng-click="removed(singleSkill)"></span>
+                        </td>
+                    </tr>
+                </table>
+                <input type="hidden" ng-model="skillscount" data-min="1" required>
+                <input type="hidden" name="HotList_sid" ng-model="HotList_sid" class="form-control input-sm">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-12">Select from below:</label>
+        </div>
+
+        <div class="form-group">
+            <div class="col-sm-11">
+                <div class="padded-row">
+                    <angucomplete id="ex2" placeholder="Search Candidates" pause="300" selectedobject="selectedPerson" localdata="people" searchfields="name,state,sid" titlefield="name,state,sid" minlength="1" inputclass="form-control form-control-small" matchclass="highlight" /></div>
+                <div class="" ng-show="selectedPerson"></div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="" class="col-sm-12">Choose Skill</label>
+            <div class="col-sm-12">
+                <table class="table" style="margin-left: 1px;">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Title</th>
+                            <th>Location Zip</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tr data-ng-repeat="singleData in skillsData" ng-show="singleData.ishow">
+                        <td>{{singleData.name}}</td>
+                        <td>{{singleData.keywords}}</td>
+                        <td><span ng-show="singleData.locationzip && singleData.locationzip!=='null'">{{singleData.locationzip}}</span></td>
+                        <td><a href="{{singleData.resumelink}}" target="_blank">Resume</a></td>
+                        <td><a href="javascript:;" ng-click="add(singleData)"><span class="glyphicon glyphicon-plus"></span></a></td>
+                    </tr>
+                    
+                    <tr ng-show="!skillsData.length">
+                        <td colspan="5">No skills available.</td>
+                    </tr>
+
+                </table>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="save('addCandidate')" data-ng-disabled="!searchForm.$valid">Save</button>
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end new of contact -->

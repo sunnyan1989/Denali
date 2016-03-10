@@ -1,0 +1,26 @@
+<!-- start new of contact -->
+<form  class="form-horizontal form-validation" name="forms.job" ng-submit="submit(job)" novalidate>
+    <div class="modal-header">
+        <h4>Please enter a note</h4>
+    </div>
+    
+    <div class="modal-header" ng-show="type!=='inactive'">
+        <h4 class="red">The message can't be sent because this candidate does not have email in the database.</h4>
+    </div>
+
+    <div class="modal-body panel-body">
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea class="form-control" data-ng-model="job.note_i" rows="4" required></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <button class="btn btn-primary" type="submit" data-ng-disabled="!forms.job.$valid">Save</button>
+        <input type="hidden" ng-model="job.sid" class="form-control input-sm">
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end new of contact -->

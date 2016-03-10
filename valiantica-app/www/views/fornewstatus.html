@@ -1,0 +1,9 @@
+<table class="table table-responsive table-condensed" ng-show="candidates[curCandidateIndex].status_sid!==5 && candidates[curCandidateIndex].status_sid!==6">
+
+    <tr>
+        <td colspan="2">
+            <button type="button" ng-click="updateJobStatusWithEmail('submitted', job, candidates[curCandidateIndex])" class="btn btn-sm btn-info">Submit Candidate</button>&nbsp;
+            &nbsp <button type="button" ng-click="updateJobStatusWithEmail('inactive', job, candidates[curCandidateIndex])" class="btn btn-sm btn-info">Not A Match</button>
+        </td>
+    </tr>
+</table>

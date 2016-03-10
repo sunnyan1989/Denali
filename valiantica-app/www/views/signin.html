@@ -1,0 +1,58 @@
+<div class="page-signin">
+
+    <div class="signin-header">
+        <div class="container text-center">
+            <section class="logo">
+                <img src="images/valiantica.png" />
+                <h5>Release v1.0 / Build 10-02-2014</h5>
+            </section>
+        </div>
+    </div>
+
+    <div class="signin-body">
+        <div class="container">
+            <div class="form-container">
+                <form name="signinForm" class="form-horizontal form-validation" ng-submit="signin()" novalidate>
+                    <fieldset>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input ng-model="user.email" type="email"
+                                       class="form-control"
+                                       placeholder="Email" required
+                                       >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                <input ng-model="user.password" type="password"
+                                       class="form-control"
+                                       placeholder="Password"
+                                       data-ng-minlength="6"
+                                       required
+                                       >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                        </div>
+                        <div class="form-group">
+                            <button data-ng-disabled="!signinForm.$valid" type="submit" class="btn btn-primary btn-lg btn-block">Log In</button>
+                        </div>
+                    </fieldset>
+                </form>
+
+                <section>
+                    <p class="text-center"><a href="#/forgot-password">Forgot your password?</a></p>
+                    <p class="text-center text-muted text-small">Don't have an account yet? <a href="#/signup">Sign up</a></p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+</div>

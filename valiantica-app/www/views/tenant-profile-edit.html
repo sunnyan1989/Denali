@@ -1,0 +1,33 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3>Edit Company Profile</h3>
+</div>
+<div class="modal-body">
+    <form name="tenantProfileForm" class="form-horizontal form-validation" novalidate>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name<span class="star">*</span></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control input-sm" id="name" placeholder="Name" data-ng-model="tenant.name" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="description" class="col-sm-2 control-label">Description<span class="star">*</span></label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control input-sm" id="description" placeholder="Description" data-ng-model="tenant.description" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="logo" class="col-sm-2 control-label">Logo</label>
+            <div class="col-sm-8">
+                <input type="file" title="Choose Image File" nv-file-select uploader="uploader" filters="imageFilter" data-ui-file-upload class="btn-primary btn-sm" required >
+                {{uploader.queue[uploader.queue.length - 1].file.name}}
+            </div>
+        </div>				
+    </form>  	
+</div>
+<div class="modal-footer">
+    <!--<button class="btn btn-primary pull-left" ng-click="reset()">Reset</button>-->
+    <button class="btn btn-success" ng-click="save()" data-ng-disabled="!tenantProfileForm.$valid">Save</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+<!-- end Modal -->

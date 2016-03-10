@@ -1,0 +1,64 @@
+<!-- start new of contact -->
+<div class="modal-header">
+    <h3><span ng-show="master.sid">Edit</span><span ng-show="!master.sid">New</span> Employment</h3>
+</div>
+<form  class="form-horizontal form-validation" name="forms.employment" ng-submit="submit(master)" novalidate>
+    <div class="modal-body panel-body">
+
+        <div class="form-group">
+            <label for="" class="col-sm-3">Employer<span class="star">*</span></label>
+            <div class="col-sm-9">
+                <input type="text" ng-model="master.name" class="form-control input-sm" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-3">Title<span class="star">*</span></label>
+            <div class="col-sm-9">
+                <input type="text" ng-model="master.title" class="form-control input-sm" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-3">Job Type<span class="star">*</span></label>
+            <div class="col-sm-9">
+                <select class="form-control input-sm" ng-model="master.JobType" required>
+                    <option ng-show="JobType" data-ng-repeat="JobType in master.JobTypeData" value="{{$index}}" data-ng-selected="master.JobType == $index">{{JobType}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-3">Start Date</label>
+            <div class="col-sm-9" data-ng-controller="DatepickerDemoCtrl">
+                <div class="input-group ui-datepicker">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input type="text" 
+                           class="form-control ui-datepicker input-sm"
+                           placeholder=""
+                           datepicker-popup="MM/dd/yyyy"
+                           ng-model="master.startdate"
+                           close-text="Close">
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="" class="col-sm-3">End Date</label>
+            <div class="col-sm-9" data-ng-controller="DatepickerDemoCtrl">
+                <div class="input-group ui-datepicker">
+                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                    <input type="text" 
+                           class="form-control ui-datepicker input-sm"
+                           placeholder=""
+                           datepicker-popup="MM/dd/yyyy"
+                           ng-model="master.enddate"
+                           close-text="Close">
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <button class="btn btn-primary" type="submit" data-ng-disabled="!forms.employment.$valid">Save</button>
+        <input type="hidden" ng-model="master.sid" class="form-control input-sm">
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end new of contact -->

@@ -1,0 +1,22 @@
+<!-- start new of contact -->
+<form  class="form-horizontal form-validation" name="forms.comment" ng-submit="submit(comment)" novalidate>
+    <div class="modal-header">
+        <h4>Please enter a comment</h4>
+    </div>
+
+    <div class="modal-body panel-body">
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea class="form-control" data-ng-model="comment.note_i" rows="4" required></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <button class="btn btn-primary" type="submit" data-ng-disabled="!forms.comment.$valid">Save</button>
+        <input type="hidden" ng-model="comment.sid" class="form-control input-sm">
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end new of contact -->

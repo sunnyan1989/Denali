@@ -1,0 +1,84 @@
+<div class="page page-table">
+    <section class="panel panel-default table-dynamic">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> <span data-i18n="Hotlist"></span></strong></div>
+        <div class="panel-body">
+
+            <div class="table-filters">
+                <div class="row">
+                    <div class="col-sm-7">
+                        <a href="javascript:;" style="float: left;" ng-click="addHostList(HotList_sid, list1)" class="btn btn-w-md btn-gap-v btn-primary active_button"><span data-i18n="Add Candidate"></span></strong></a>
+                        <a href="javascript:;" style="float: left; margin-left: 140px;" class="btn btn-w-md btn-gap-v btn-primary active_button" ng-click="dupHotList()"><span data-i18n="Duplicate Hotlist"></span></a>
+                    </div>
+                    <div class="col-sm-4">
+                        <form>
+                            <input type="text"
+                                   style="width:99%;"
+                                   placeholder="search"
+                                   class="form-control input-sm"
+                                   data-ng-model="filterKeywords"
+                                   data-ng-keyup="filterHotListData()">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-11">
+
+                <section class="panel panel-default">
+                    <div class="no-hotlist" ng-show="no_result_found" style="margin-top: 6px;"><span data-i18n="This hotlist is currently empty."></span></div>
+                    <div class="panel-body" ng-show="!no_result_found">
+                        <div style="margin-bottom: 28px; margin-left: -10px; width: 100%;">
+                            <div class="pull-left sec-menu">
+                                <div class="expandall"><a href="" ng-click="toggleAll(true)">Expand All</a></div> 
+                                <div class="expandall"><a href="" ng-click="toggleAll(false)">Collapse All</a></div>  
+                            </div> 
+                            <div class="pull-right sec-menu">
+                                <div class="smallbox">Found</div> 
+                                <div class="smallbox">New</div> 
+                                <div class="Submitted">Submitted</div> 
+                                <div class="Responded">Responded</div> 
+                                <div class="Selected">Selected</div> 
+                                <div class="smallbox">Closed</div> 
+                                <div class="middlebox">Rejected</div> 
+                                <div class="middlebox">Inactive</div>
+                            </div>
+                        </div>
+                        <div ui-tree="options">
+                            <ol ui-tree-nodes ng-model="list1" >
+                                <li ng-repeat="item in list1" ng-show="item.ishow === true" ui-tree-node ng-include="'items_renderer.html'"></li>
+                            </ol>
+                        </div>
+
+                    </div>
+                </section>
+                <script type="text/ng-template" id="items_renderer.html">
+                    <div class="angular-ui-tree-handle bg-grey">
+                    <span data-ng-show="item.items.length > 0">
+                    <a class="angular-ui-tree-icon" data-nodrag ng-click="togglecollapse(item.sid)">
+                    <span class="angular-ui-tree-icon-collapse" ng-class="{'uncollapsed': item.collapsed, 'collapsed': !item.collapsed}"></span>
+                    </a>
+                    </span>
+                    <span class="first-layout" ng-show="item.second === false">
+                    <img data-ng-src="{{item.picture?item.picture:'/files/profiles/1/default_profile.jpg'}}" style="height:30px; max-width:30px;"> {{item.title}}
+                    <div class="pull-right sec-menu"><div class="smallbox">{{item.CountFound}}</div> <div class="smallbox">{{item.CountNew}}</div> <div class="Submitted">{{item.CountSubmitted}}</div> <div class="Responded">{{item.CountResponded}}</div> <div class="Selected">{{item.CountSelected}}</div> <div class="smallbox">{{item.CountClosed}}</div> <div class="middlebox">{{item.CountRejected}}</div> <div class="middlebox">{{item.CountInactive}}</div></div>
+                    </span>
+                    <span class="second-layout" ng-show="item.second === true">
+                    <img data-ng-src="{{item.picture?item.picture:'/files/profiles/1/default_profile.jpg'}}" style="height:30px; max-width:30px;"> {{item.title}}
+                    <div class="pull-right sec-menu"><div class="smallbox">{{item.Found}}</div> <div class="smallbox">{{item.New}}</div> <div class="Submitted">{{item.Submitted}}</div> <div class="Responded">{{item.Responded}}</div> <div class="Selected">{{item.Selected}}</div> <div class="smallbox">{{item.Closed}}</div> <div class="middlebox">{{item.Rejected}}</div> <div class="middlebox">{{item.Inactive}}</div></div>
+                    </span>
+                    <a ng-show="item.second === true && item.assgin_status!=='Inactive'" class="angular-ui-tree-icon angular-ui-tree-icon-action" data-nodrag ng-click="updateAssignStatus(this, item, $index)"><span class="fa fa-times"></span></a>
+                    <a ng-show="item.second === true && item.assgin_status==='Inactive'" class="angular-ui-tree-icon angular-ui-tree-icon-action" data-nodrag ng-click="updateAssignStatus(this, item, $index)"><span class="fa fa-plus"></span></a> 
+                    <a ng-show="item.second === false" class="angular-ui-tree-icon angular-ui-tree-icon-action" data-nodrag ng-click="addAssignPerson(item.HotList_sid, item)"><span class="fa fa-plus"></span></a>
+                    <a ng-show="item.second === false && item.assgin_status!=='Inactive'" class="angular-ui-tree-icon angular-ui-tree-icon-action" data-nodrag ng-click="updateHotListStatus(this, item, $index)"><span class="fa fa-times"></span></a>
+                    </div>
+                    <ol ui-tree-nodes="options" ng-model="item.items" ng-class="{hidden: !item.collapsed}">
+                    <li ng-repeat="item in item.items" ui-tree-node ng-include="'items_renderer.html'"></li>
+                    </ol>
+                </script>
+            </div>
+        </div>
+        <div class="page-loading hoslist-loading" ng-show="page_ishow">
+            <img alt="Please Wait..." data-ng-src="images/loading.gif">
+        </div>
+    </section>
+
+</div>

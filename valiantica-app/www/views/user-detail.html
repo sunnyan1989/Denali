@@ -1,0 +1,125 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3>{{title}}</h3>
+</div>
+<form name="forms.basicForm" class="form-horizontal form-validation" novalidate>
+    <div class="modal-body">
+
+        <div class="col-sm-12">
+            <div class="col-sm-3">
+                <div class="form-group">
+                    <div class="form-group">
+                        <img alt="Profile Picture" data-ng-src="{{master.picturelink?master.picturelink:'/files/profiles/1/default_profile.jpg'}}" style="height:175px; max-width:150px;">
+                        <div style="position: absolute; margin-top: -190px; padding-left: 10px; background-color: #faf2cc;">{{uploader.queue[uploader.queue.length - 1].file.name}}</div>
+                    </div>
+                    <div class="col-sm-12">
+                        <input type="file" title="Choose Your Photo" nv-file-select uploader="uploader" filters="imageFilter" data-ui-file-upload class="btn-primary btn-sm" >
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-9">
+
+                <div class="form-group" ng-if="master.edit">
+                    <label for="status" class="col-sm-2 control-label">Status</label>
+                    <div class="col-sm-10">
+                        <div class="checkbox">
+                            <label>
+                                <input id="status" type="checkbox" data-ng-model="master.statusid" data-ng-false-value = "2" data-ng-true-value = "1"> Active
+                            </label>
+                        </div>
+                        <input type="hidden" ng-model="master.oldstatusid" class="form-control input-sm">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name<span class="star">*</span></label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control input-sm {{master.checkename}}" name="username" placeholder="Name" data-ng-model="master.name" ng-pattern="/^[a-zA-Z0-9- ]*$/" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label">Flags</label>
+                    <div class="col-sm-10">
+                        <div class="checkbox-inline">
+                            <label><input type="checkbox" data-ng-model="master.isuser" data-ng-false-value="0" data-ng-true-value="1" data-ng-change="checkUserRole(master.isuser, master.istenantadmin, master)">User</label>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label><input type="checkbox" data-ng-model="master.istenantadmin" data-ng-false-value="0" data-ng-true-value="1" data-ng-change="checkUserRole(master.isuser, master.istenantadmin, master)">Admin</label>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label><input type="checkbox" data-ng-model="master.isforcm" data-ng-false-value="0" data-ng-true-value="1">For CM</label>
+                        </div>
+                        <div class="checkbox-inline">
+                            <label><input type="checkbox" data-ng-model="master.isforeq" data-ng-false-value="0" data-ng-true-value="1">For REQ</label>
+                        </div>
+                        <div class="checkbox-inline" ng-if="master.tenant_sid1">
+                            <label><input type="checkbox" data-ng-model="master.isglobaladmin" data-ng-false-value="0" data-ng-true-value="1">Global Admin</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group" ng-if="master.isuser">
+                    <label for="userId" class="col-sm-2 control-label">UserID</label>
+                    <div class="col-sm-10">
+                        <input type="email" class="form-control input-sm" id="userId" placeholder="UserID (Email address)" data-ng-model="master.userid" required>
+                    </div>
+                </div>
+                <div class="form-group" ng-if="master.isuser">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-8">
+                        <input type="password" class="form-control input-sm" id="password" placeholder="min length 6" 
+                               data-ng-model="master.password" data-ng-minlength="6" required>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group">
+                    <label for="startDate" class="col-sm-2 control-label">Start Date</label>
+                    <div class="col-sm-10">
+                        <input type="text" 
+                               class="form-control ui-datepicker input-sm"
+                               id = "startDate"
+                               placeholder="Start Date"
+                               datepicker-popup="MM/dd/yyyy"
+                               data-ng-model="master.startdate"
+                               min="master.startdate"
+                               close-text="Close">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="endDate" class="col-sm-2 control-label">End Date</label>
+                    <div class="col-sm-10">
+                        <input type="text" 
+                               class="form-control ui-datepicker input-sm"
+                               id = "endDate"
+                               placeholder="End Date"
+                               datepicker-popup="MM/dd/yyyy"
+                               data-ng-model="master.enddate"
+                               min="master.startdate"
+                               close-text="Close">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="roles" class="col-sm-2 control-label">Roles</label>
+                    <div class="col-sm-10">
+                        <select multiple class="form-control input-sm" ng-model="master.roles" ng-options="k as v for (k, v) in roles" required></select>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div style="clear:both;"></div>
+
+    <div class="modal-footer">
+        <button class="btn btn-success" data-ng-click="save()" data-ng-disabled="!forms.basicForm.$valid">Save</button>
+        <button class="btn btn-warning" data-ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+
+<!-- end Modal -->

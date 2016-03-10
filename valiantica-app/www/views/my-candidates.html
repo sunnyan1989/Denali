@@ -1,0 +1,290 @@
+<div class="page page-table">
+
+    <section class="panel panel-default table-dynamic">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th"></span> Summary</strong>&nbsp
+            <span class="glyphicon {{isCollapsed?'glyphicon-collapse-down':'glyphicon-collapse-up'}}" ng-click="setSummaryStatus(isCollapsed)" style="font-size: 16px; margin-left: 8px;"></span>
+        </div>
+        <div class="panel-body">
+            <div collapse="isCollapsed">
+
+                <div ng-show="no_result_found" style="font-size: 15px;">
+                    <span data-i18n="There is no candidate currently assigned to you."></span>
+                </div>
+
+                <table class="table table-bordered table-striped table-responsive table-condensed" ng-show="!no_result_found">
+                    <thead class="bg-dark">
+                        <tr> 
+                            <th><div class="th"><span data-i18n=""></span></div></th>
+                    <th><div class="th"><span data-i18n="Candidate"></span></div></th>
+                    <th><div class="th"><span data-i18n="Skill"></span></div></th>
+                    <th><div class="th"><span data-i18n="Rate"></span></div></th>
+                    <th><div class="th"><span data-i18n="Status"></span></div></th>
+                    <th><div class="th" style="width:60px;"><span data-i18n="#Found"></span></div></th>
+                    <th><div class="th" style="width:85px;"><span data-i18n="Int. Match"></span></div></th>
+                    <th><div class="th"><span data-i18n="Search"></span></div></th>
+                    <th><div class="th" style="width:40px;"><span data-i18n="Job"></span></div></th>
+                    <th><div class="th"><span data-i18n="Phone"></span></div></th>
+                    <th><div class="th" style="width:40px;"><span data-i18n="Email"></span></div></th>
+                    </tr>	
+                    </thead>
+                    <tbody>
+
+                        <tr data-ng-repeat="candidate in candidates">
+                            <td>
+                                <img data-ng-src="{{candidate.candidate_picture?candidate.candidate_picture:'/files/profiles/1/default_profile.jpg'}}" class="candidate-a" ng-mouseover="hoverIn()" ng-mouseleave="hoverOut()">
+                                <div ng-show="hoverEdit" class="animate-show">
+                                    <!--start mouse over for image-->
+                                    <table class="table table-bordered table-responsive table-condensed">
+                                        <tr>
+                                            <th><img data-ng-src="{{candidate.candidate_picture?candidate.candidate_picture:'/files/profiles/1/default_profile.jpg'}}" style="max-width:90px;"></th>
+                                            <td>
+                                                <div>Email: {{candidate.cand_email}}</div>
+                                                <div>Location Zip: {{candidate.locationzip}}</div>
+                                                <div>Skills: {{candidate.candidate_skill}}</div>
+                                                <div><span data-i18n="Job Type"></span>: {{candidate.jobtypename}}</div>
+                                                <div><span data-i18n="Employment Type"></span>: {{candidate.employmenttypename}}</div>
+                                                <div ng-if="candidate.candidate_linkedin !== 'null'">Linkedin: {{candidate.candidate_linkedin}}</div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2">
+                                                <div>Keywords: {{candidate.keywords}}</div>
+                                                <div>
+                                                    <p></p>
+                                                    <table class="table table-bordered table-responsive table-condensed">
+                                                        <tr>
+                                                            <td>New</td>
+                                                            <td>Submitted</td>
+                                                            <td>Responded</td>
+                                                            <td>Selected</td>
+                                                            <td>Closed</td>
+                                                            <td>Rejected</td>
+                                                            <td>Inactive</td>
+                                                        </tr>
+                                                        <tr style="text-align: center;">
+                                                            <td>{{candidate.no_new}}</td>
+                                                            <td>{{candidate.no_submitted}}</td>
+                                                            <td>{{candidate.no_reponded}}</td>
+                                                            <td>{{candidate.no_selected}}</td>
+                                                            <td>{{candidate.no_closed}}</td>
+                                                            <td>{{candidate.no_rejected}}</td>
+                                                            <td>{{candidate.no_inactive}}</td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!--end mouse over for image-->
+                                </div>
+                            </td>
+                            <td><a href="" data-ng-class="{currentcan:curCandidateIndex === $index}" data-ng-click="setCurrentCandidate($index)">{{candidate.candidate}}</a></td>
+                            <td><a data-ng-href="{{candidate.resumelink}}" target="_blank">{{candidate.candidate_skill}}</a></td>
+                            <td><span data-ng-if="candidate.hourlyrate_desired">{{candidate.hourlyrate_desired}}</span><span data-ng-if="candidate.annualsalary_desired">{{candidate.annualsalary_desired}}</span></td>
+                            <td>
+                                <select ng-if="candidate.status_sid !== 5 && candidate.status_sid !== 6" data-ng-change="updateStatus($index)" class="form-control input-sm" data-ng-model="candidate.newStatusSid" > 
+                                    <option data-ng-repeat="status in hotlistStatusList" data-ng-show="$index"
+                                            value="{{$index}}" data-ng-selected="candidate.status_sid === $index">
+                                        {{status}}
+                                    </option>
+                                </select>
+                                <span ng-show="candidate.status_sid === 5">Closed</span>
+                                <span ng-show="candidate.status_sid === 6">Inactive</span>
+                            </td>		
+                            <td>{{candidate.no_found}}</td>
+                            <td>0</td>
+                            <td>
+                                <span data-ng-repeat="searchurl in candidate.url"><a href="{{searchurl.urllink}}" target="_blank" style="text-transform: capitalize">{{searchurl.company}}</a>, </span> 
+                                &nbsp;&nbsp;<a ng-if="candidate.status_sid !== 5 && candidate.status_sid !== 6" data-ng-click="editKW($index)"><span class="glyphicon glyphicon-edit"></span></a>
+                            </td>
+                            <td>
+                                <a href="" data-ng-click="addJob($index)" ng-if="candidate.status_sid !== 5 && candidate.status_sid !== 6 && curCandidateIndex === $index">Add</a>
+                            </td>
+                            <td>{{candidate.cand_homephone}}</td>
+                            <td>
+                                <span class="glyphicon glyphicon-envelope" data-ng-click="sendMail($index)" style="font-size: 150%; cursor: pointer;"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <div class="page-loading" ng-if="page_ishow">
+            <img alt="Please Wait..." data-ng-src="images/loading.gif">
+        </div>
+
+    </section>
+    <script language=javascript>
+                //var t1 = new Date().getTime();
+                //document.getElementById("test").innerHTML = t1;
+    </script>
+    <div id="test"></div>
+    <section class="panel panel-default table-dynamic" data-ng-show="candidates.length > 0">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th"></span> Jobs for {{candidates[curCandidateIndex].candidate}}</strong>
+        </div>
+        <div class="panel-body">	
+            <div class="row">
+                <div class="col-md-12" style="text-align: left;">
+
+                    <div style="position: absolute; margin-top: 1px; float: left;"><label class="switch switch-danger"><input type="checkbox" data-ng-false-value = "false" data-ng-true-value = "true" data-ng-model="isHotList" ng-click="updateishotlist()"><i></i></label></div>
+                    <div style="float: left; margin-left: 40px;">
+                        <span data-ng-repeat="status in hotlistJobStatusList">
+                            <label>
+                                <input type="checkbox" ng-disabled="isHotList === 'true' ? true : false" data-ng-model="status.value" 
+                                       data-ng-change="changeJobStatusList($index)"> {{status.name}}
+                            </label>&emsp;
+                        </span>
+                        &nbsp;
+                    </div>
+
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-12">
+                    <accordion close-others="true" class="ui-accordion">
+
+                        <accordion-group ng-show="job.title" data-ng-repeat="job in jobs" data-ng-click="getHistory($index, job.sid)" class="{{job.groupClass}}" is-open="job.isOpen">
+
+                            <accordion-heading>
+                                Job {{job.sid}} - {{job.title}} @ {{job.client}}, {{job.jobstatus}} @ {{job.createdat| date:'MM/dd/yyyy'}}
+                            </accordion-heading>
+
+                            <div class="row">
+                                <a ng-show="candidates[curCandidateIndex].status_sid !== 5 && candidates[curCandidateIndex].status_sid !== 6 && !job.thirdStep" data-ng-click="editJob(job, candidates[curCandidateIndex])" class="a_cursor" style="margin-left: 10px; position: absolute;">
+                                    <span class="glyphicon glyphicon-edit"></span>
+                                </a>
+                                <div class="hot-check">
+                                    <label class="switch switch-danger" ng-show="candidates[curCandidateIndex].status_sid === 5 && candidates[curCandidateIndex].status_sid === 6">
+                                        <input type="checkbox" data-ng-false-value="false" data-ng-true-value="true" data-ng-model="job.ishot"><i></i>
+                                    </label>
+                                    <label class="switch switch-danger" ng-show="candidates[curCandidateIndex].status_sid !== 5 && candidates[curCandidateIndex].status_sid !== 6">
+                                        <input type="checkbox" data-ng-false-value="false" data-ng-true-value="true" data-ng-model="job.ishot" ng-click="updateishot(job, isHotList)"><i></i>
+                                    </label>
+                                </div>   
+                                <table class="table table-bordered table-responsive table-condensed">
+
+                                    <tr class="bg-dark">
+                                        <th>Title</th>
+                                        <th>Client</th>
+                                        <th>ID</th>
+                                        <th>Source</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{{job.title}}</td>
+                                        <td>{{job.client}}</td>
+                                        <td>{{job.ID}}</td>
+                                        <td>{{job.source}}</td>
+                                    </tr>
+
+                                    <tr class="bg-dark">
+                                        <th>Vendor Company</th>
+                                        <th>Vendor Contact</th>
+                                        <th>Vendor Email</th>
+                                        <th>Vendor Phone</th>
+                                    </tr>
+
+                                    <tr>
+                                        <td>{{job.vendor}}</td>
+                                        <td>{{job.vendorcontact}}</td>
+                                        <td><span ng-show="job.vendoremail !== 'null'">{{job.vendoremail}}</span></td>
+                                        <td>{{job.vendorphone}}</td>
+                                    </tr>
+                                    <tr class="bg-dark">
+                                        <th colspan="4">URL</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan="4"><a ng-show="job.joblink" data-ng-href="{{job.joblink}}" target="_blank">Job Link</a></td>
+                                    </tr>
+                                    <tr class="bg-dark">
+                                        <th colspan=4>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=4><textarea disabled rows="4" cols="140">{{job.description}}</textarea></td>
+                                    </tr>
+
+                                    <tr ng-show="job.fristStep" class="bg-dark">
+                                        <th></th>
+                                        <th>Hourly Rate</th>
+                                        <th colspan="2">Annual Salary</th>
+                                    </tr>
+                                    <tr ng-show="job.fristStep">
+                                        <th>Original</th>
+                                        <td>{{job.hourlyrate}}</td>
+                                        <td colspan="2">{{job.annualsalary}}</td>
+                                    </tr>
+
+                                </table>
+
+                                <table ng-show="!job.fristStep" class="table table-bordered table-responsive table-condensed job-detail-table-margin">
+                                    <thead>
+                                        <tr class="bg-dark">
+                                            <th></th>
+                                            <th>Hourly Rate</th>
+                                            <th>Annual Salary</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th>Original</th>
+                                            <td>{{job.hourlyrate}}</td>
+                                            <td>{{job.annualsalary}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Submitted</th>
+                                            <td>{{job.hourlyrate_submitted}}</td>
+                                            <td>{{job.annualsalary_submitted}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Agreed</th>
+                                            <td>{{job.hourlyrate_agreed}}</td>
+                                            <td>{{job.annualsalary_agreed}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <ng-include src="'views/fornewstatus.html'" ng-show="job.fristStep"></ng-include>
+                                <ng-include src="'views/forsubmittedstatus.html'" ng-show="job.secondStep"></ng-include>
+                            </div>
+                            <div style="padding: 0px; margin: 0px;">
+                                <div class="col-sm-12" style="padding: 0; margin-left:-15px;">
+                                    <div class="bg-dark" style="padding-left: 6px;">Activity History</div>
+                                </div>
+                                <table class="col-sm-12 table table-bordered table-responsive table-condensed" style="padding: 0; margin-left:-15px;">
+                                    <thead>
+                                        <tr class="bg-dark">
+                                            <th>Date</th>
+                                            <th>Action</th>
+                                            <th>Comments</th>
+                                            <th>Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr data-ng-repeat="transaction in job.transactions">
+                                            <td>{{transaction.date| date:'MM/dd/yyyy hh:mm:ss a'}}</td>
+                                            <td>{{transaction.action}}</td>
+                                            <td>{{transaction.comment}}</td>
+                                            <td>{{transaction.note}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<div id="TimeShow"></div>
+<SCRIPT LANGUAGE="JavaScript">
+            // window.onload = function()
+            //  {
+            //document.getElementById("TimeShow").innerHTML = new Date().getTime();
+            //   }
+</SCRIPT> 

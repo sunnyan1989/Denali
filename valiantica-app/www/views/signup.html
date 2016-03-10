@@ -1,0 +1,99 @@
+<div class="page-signup">
+
+    <div class="signin-header">
+        <div class="container text-center">
+            <section class="logo">
+                <img src="images/valiantica.png" />
+                <h5>Release v1.0 / Build 09-04-2014</h5>
+            </section>
+        </div>
+    </div>
+
+    <div class="signup-body">
+        <div class="container">
+            <div class="form-container">
+                <section>
+                    <form name="signupForm" class="form-horizontal form-validation" ng-submit="signup(tenant)" novalidate>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-briefcase"></span>
+                                </span>
+                                <input ng-model="tenant.name" type="text"
+                                       class="form-control"
+                                       placeholder="Company Name"
+                                       required
+                                       >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-user"></span>
+                                </span>
+                                <input ng-model="tenant.username" type="text"
+                                       class="form-control"
+                                       placeholder="Admin Name"
+                                       required
+                                       >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-envelope"></span>
+                                </span>
+                                <input ng-model="tenant.email" type="email"
+                                       class="form-control"
+                                       placeholder="Admin Email"
+                                       required
+                                       >
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+                                <input ng-model="tenant.password" type="password"
+                                       class="form-control"
+                                       placeholder="Admin Password (min length 6)"
+                                       data-ng-minlength="6"
+                                       required
+                                       >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="input-group input-group-lg">
+                                <span class="input-group-addon">
+                                    <span class="glyphicon glyphicon-lock"></span>
+                                </span>
+
+                                <input  type="password"
+                                        ng-model="tenant.passwordConfirm"
+                                        class="form-control"
+                                        data-match="tenant.password"
+                                        placeholder="Confirm Password (min length 6)"
+                                        required
+                                        data-ng-minlength="6">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <p class="text-muted text-small">By clicking on sign up, you agree to <a href="javascript:;">terms & conditions</a> and <a href="javascript:;">privacy policy</a></p>
+                            <div class="divider"></div>
+                            <button data-ng-disabled="!signupForm.$valid" type="submit" class="btn btn-primary btn-block btn-lg">Sign Up</button>
+                        </div>
+
+                    </form>
+                </section>
+
+                <section>
+                    <p class="text-center text-muted">Already have an account? <a href="#/pages/signin" >Log in now</a></p>
+                </section>
+
+            </div>
+        </div>
+    </div>
+</div>

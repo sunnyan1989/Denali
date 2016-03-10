@@ -1,0 +1,61 @@
+<!-- Modal -->
+<div class="modal-header">
+    <h3>Edit User Profile</h3>
+</div>
+<div class="modal-body">
+    <form name="forms.basicForm" class="form-horizontal form-validation" novalidate>
+        <div class="form-group">
+            <label for="name" class="col-sm-2 control-label">Name</label>
+            <div class="col-sm-10">
+                <input type="text" class="form-control input-sm" placeholder="Name" data-ng-model="user.name" required ng-pattern="/^[a-zA-Z0-9- ]*$/">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="userId" class="col-sm-2 control-label">User ID</label>
+            <div class="col-sm-10">
+                <input type="email" class="form-control input-sm" id="userId" placeholder="Email" data-ng-model="user.userid" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="logo" class="col-sm-2 control-label">Picture</label>
+            <div class="col-sm-8">
+                <input type="file" title="Choose Image File" nv-file-select uploader="uploader" filters="imageFilter" data-ui-file-upload class="btn-primary btn-sm" required >
+                {{uploader.queue[uploader.queue.length - 1].file.name}}
+            </div>
+        </div>	
+    </form>
+    <form name="forms.passwordForm" class="form-horizontal form-validation" novalidate>
+        <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+                <div class="checkbox">
+                    <label>
+                        <input id="changePassword" type="checkbox" data-ng-model="user.changePassword" data-ng-false-value = "0" data-ng-true-value = "1"> 
+                        Change Password
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="form-group" data-ng-show="user.changePassword">
+            <label for="currentPassword" class="col-sm-3 control-label">Current Password</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control input-sm" id="currentPassword" placeholder="(min length 6)" 
+                       data-ng-model="user.password" data-ng-minlength="6" required>
+            </div>
+        </div>
+        <div class="form-group" data-ng-show="user.changePassword">
+            <label for="newPassword" class="col-sm-3 control-label">New Password</label>
+            <div class="col-sm-9">
+                <input type="password" class="form-control input-sm" id="newPassword" placeholder="(min length 6)" 
+                       data-ng-model="user.newPassword" data-ng-minlength="6" required>
+            </div>
+        </div>
+        
+        
+
+    </form>  	
+</div>
+<div class="modal-footer">
+    <button class="btn btn-success" data-ng-click="save()" data-ng-disabled="!forms.basicForm.$valid">Save</button>
+    <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+</div>
+<!-- end Modal -->

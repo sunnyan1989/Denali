@@ -1,0 +1,20 @@
+					<form class="form-inline" role="form" data-ng-submit="search(searchKeys)">
+						<div class="form-group">
+							<label for="name" class="sr-only">Status</label>
+							<select class="form-control input-sm" id="status">
+								<option>All</option>
+								<option>New</option>
+								<option>Submitted</option>
+								<option>Interested</option>
+								<option>Screening</option>
+								<option>Interviewing</option>
+								<option>Interviewed</option>
+								<option>Rejected</option>
+								<option>Selected</option>
+								<option>Closed</option>
+								<option>Inactive</option>
+							
+							</select>
+						</div>&emsp;
+						<button type="submit" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></button>
+					</form>

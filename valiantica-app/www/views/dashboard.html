@@ -1,0 +1,35 @@
+
+<div class="page page-charts">
+
+    <div class="row" ng-show="isMarketing">
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Monthly CM Status</div>
+                <div class="panel-body">
+                    <div id="chartbystatus" data-flot-chart
+                         data-data="line2.data"
+                         data-options="line2.options"
+                         style="height: 300px;">
+                    </div>
+                </div>
+            </section>
+        </div> 
+    </div>
+
+    <div class="row" ng-show="isManager || isMarketing || isglobaladmin || istenantadmin">
+        <div class="col-md-12">
+            <section class="panel panel-default">
+                <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> Monthly CM Team Activities</div>
+                <div class="panel-body">
+                    <div id="chartbyactivity" data-flot-chart
+                         data-data="line3.data"
+                         data-options="line3.options"
+                         style="height: 300px;">
+                    </div>
+                </div>
+            </section>
+        </div> 
+    </div>
+
+</div>
+

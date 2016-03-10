@@ -1,0 +1,299 @@
+<div class="page page-table">
+
+    <section class="panel panel-default table-dynamic">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th"></span> Summary</strong>&nbsp
+            <button class="btn btn-primary btn-tiny" ng-click="isCollapsed = !isCollapsed">+/-</button>
+        </div>
+        <div class="panel-body">
+            <div collapse="isCollapsed">
+                <div class="well well-lg">
+                    <div class="row" data-ng-controller='TableCtrl'>	
+                        <table class="table table-bordered table-striped table-responsive  table-condensed">
+                            <thead>
+                                <tr> 
+                                    <th><div class="th">Candidate</div></th>
+                            <th><div class="th">Skill</div></th>
+							<th><div class="th">Rate</div></th>
+                            <th><div class="th">Status</div></th>
+
+                            <th><div class="th"># Found</div></th>
+                            <th><div class="th"># New</div></th>
+                            <th><div class="th"># Submitted</div></th>
+                            <th><div class="th"># Responded</div></th>
+                            <th><div class="th"># Selected</div></th>
+                            <th><div class="th"># Closed</div></th>
+							<th><div class="th">Match</div></th>
+                            <th><div class="th">Search</div></th>
+							<th><div class="th">KW</div></th>
+                            <th><div class="th">Job</div></th>
+                            <th><div class="th">Contact</div></th>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td><a>John Smith</a></td>
+                                    <td><a href="files/resumes/1/default_resume.pdf" target="_blank">Java Developer</a></td>
+									<td>$50/hr</td>
+                                    <td><select class="form-control input-sm" name="selectStatus"> 
+                                            <option>Active</option>
+                                            <option selected>Submitted</option>
+                                            <option>Interviewing</option>
+                                            <option>Selected</option>
+                                            <option>Closed</option>
+                                            <option>Inactive</option>
+                                        </select>
+                                    </td>
+                                    <td>20</td>
+                                    <td>2</td>
+                                    <td>10</td>
+                                    <td>1</td>
+                                    <td>0</td>
+                                    <td>0</td>
+									<td><a href="">3</a></td>
+                                    <td><a href="http://www.dice.com/job/results/90001?b=7&caller=advanced&g=con_corp&n=50&q=java&r=75&src=19&t=2&x=all&p=z" target="_blank">Dice</a>, 
+                                        <a href="http://jobsearch.monster.com/search/Contract_8?tm=Last-7-Days&q=java&where=90001__2c-Los-Angeles__2c-CA" target="_blank">Monster</a>, 
+                                        <a href="http://www.indeed.com/jobs?as_and=java&as_phr=&as_any=&as_not=&as_ttl=&as_cmp=&jt=contract&st=&salary=&radius=50&l=90001&fromage=7&limit=50&sort=date&psf=advsrch" target="_blank">Indeed</a></td>
+                                    <td><a href="">edit</a></td>
+									<td><a class="" data-ng-click="edit(user)">add</a></td>
+                                    <td><a href="mailto:candidate@gmail.com?Subject=Hello from Valiantica&body=Dear%20John,%0A%0AI%20want%20to%20introduce%20myself" target="_top">email</a>, <a>408-725-2426</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a>Peter Pan</a></td>
+                                    <td><a>.Net Developer</a></td>
+									<td>$100k/year</td>
+                                    <td><select class="form-control input-sm" name="selectStatus"> 
+                                            <option selected>Active</option>
+                                            <option>Submitted</option>
+                                            <option>Interviewing</option>
+                                            <option>Selected</option>
+                                            <option>Closed</option>
+                                            <option>Inactive</option>
+                                        </select>
+                                    </td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+                                    <td>0</td>
+									<td><a href="">3</a></td>
+                                    <td><a href="http://www.dice.com/job/results/90001?b=7&caller=advanced&g=con_corp&n=50&q=java&r=75&src=19&t=2&x=all&p=z" target="_blank">Dice</a>, 
+                                        <a href="http://jobsearch.monster.com/search/Contract_8?tm=Last-7-Days&q=java&where=90001__2c-Los-Angeles__2c-CA" target="_blank">Monster</a>, 
+                                        <a href="http://www.indeed.com/jobs?as_and=java&as_phr=&as_any=&as_not=&as_ttl=&as_cmp=&jt=contract&st=&salary=&radius=50&l=90001&fromage=7&limit=50&sort=date&psf=advsrch" target="_blank">Indeed</a></td>
+                                    <td><a href="">edit</a></td>
+									<td><a>add</a></td>
+                                    <td><a href="mailto:candidate@gmail.com?Subject=Hello from Valiantica&body=Dear%20John,%0A%0AI%20want%20to%20introduce%20myself" target="_top">email</a>, <a>408-725-2426</a></td>
+                                </tr>
+                                <tr>
+                                    <td><a>Mary Smith</a></td>
+                                    <td><a>Java Developer</a></td>
+									<td>$50/hr</td>
+                                    <td><select class="form-control input-sm" name="selectStatus"> 
+                                            <option>Active</option>
+                                            <option>Submitted</option>
+                                            <option>Interviewing</option>
+                                            <option selected>Selected</option>
+                                            <option>Closed</option>
+                                            <option>Inactive</option>
+                                        </select>
+                                    </td>
+                                    <td>20</td>
+                                    <td>0</td>
+                                    <td>10</td>
+                                    <td>1</td>
+                                    <td>1</td>
+                                    <td>0</td>
+									<td><a href="">3</a></td>
+                                    <td><a href="http://www.dice.com/job/results/90001?b=7&caller=advanced&g=con_corp&n=50&q=java&r=75&src=19&t=2&x=all&p=z" target="_blank">Dice</a>, 
+                                        <a href="http://jobsearch.monster.com/search/Contract_8?tm=Last-7-Days&q=java&where=90001__2c-Los-Angeles__2c-CA" target="_blank">Monster</a>, 
+                                        <a href="http://www.indeed.com/jobs?as_and=java&as_phr=&as_any=&as_not=&as_ttl=&as_cmp=&jt=contract&st=&salary=&radius=50&l=90001&fromage=7&limit=50&sort=date&psf=advsrch" target="_blank">Indeed</a></td>
+                                    <td><a href="">edit</a></td>
+									<td><a>add</a></td>
+                                    <td><a href="mailto:candidate@gmail.com?Subject=Hello%20from%20Valiantica&body=Dear%20John,%0A%0AI%20want%20to%20introduce%20myself" target="_top">email</a>, <a>408-725-2426</a></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="panel panel-default table-dynamic">
+        <div class="panel-heading">
+            <strong><span class="glyphicon glyphicon-th"></span> Jobs for John Smith</strong>
+        </div>
+        <div class="panel-body">	
+            <div class="row" data-ng-controller='TableCtrl'>
+                <div class="row container">
+                    &nbsp <label><input type="checkbox" checked> All, </label>
+                    &nbsp <label><input type="checkbox"> New, </label>
+                    &nbsp <label><input type="checkbox"> Submitted, </label>
+                    &nbsp <label><input type="checkbox"> Interested, </label>
+                    &nbsp <label><input type="checkbox"> Screening, </label>
+                    &nbsp <label><input type="checkbox"> Interviewing, </label>
+                    &nbsp <label><input type="checkbox"> Interviewed, </label>
+                    &nbsp <label><input type="checkbox"> Rejected, </label>
+                    &nbsp <label><input type="checkbox"> Selected, </label>
+                    &nbsp <label><input type="checkbox"> Closed, </label>
+                    &nbsp <label><input type="checkbox"> Inactive</label>
+                </div>
+                <p>
+                <div>
+                    <accordion close-others="oneAtATime" class="ui-accordion ui-accordion-success">
+                        <accordion-group class="ui-accordion-success color-dark" heading="Job 1 - Java Developer@Yahoo,   #Dice,   Submitted@4/10/2014" is-open="true">
+                            <div>
+                                <div class="col-md-8">
+                                    <table class="table table-bordered table-responsive  table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Vendor</th>
+                                                <th>Contact Phone</th>
+                                                <th>Contact Email</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>Valiantica: Pooja</td>
+                                            <td><a>510-231-2345</a></td>
+                                            <td><a href="mailto:xyz@valiantica.com?Subject=Follow%20on%20my%20consultant&body=Dear%20Job%20Manager,%0A%0AI%20am20happy%20to%20submit%20my%20consultant" target="_top">xyz@valiantica.com</a></td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan=3>URL</th>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=3><a href="http://www.dice.com/job/result/10121577/Java?src=19&q=java" target="_blank">http://www.dice.com/job/result/10121577/Java?src=19&q=java</td>
+                                        </tr>
+                                        <tr>
+                                            <th colspan=3>Description</th>
+                                        </tr>
+                                        <tr>
+                                            <td colspan=3><textarea disabled rows="6" cols="105">Job Description</textarea></td>
+                                        </tr>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                    <button type="submit" class="btn btn-sm btn-success">Follow Up</button>
+                                    &nbsp <button type="submit" class="btn btn-sm btn-success">Contact John Smith</button>
+                                    &nbsp <button type="submit" class="btn btn-sm btn-success">Schedule Interview</button>
+                                    &nbsp <label>Next Step</label> &nbsp <select>
+                                        <option> Interested</option>
+                                        <option> Screening</option>
+                                        <option> Interviewing</option>
+                                        <option> Interviewed</option>
+                                        <option> Rejected</option>
+                                        <option> Selected</option>
+                                        <option> Closed</option>
+                                        <option> Inactive</option>
+                                    </select>
+                                    &nbsp <input value="enter your comment"><i></i>
+                                    &nbsp <button type="submit" class="btn btn-sm btn-success">Go</button>
+                                    <hr>
+                                </div>
+                                <div class="col-md-5">
+                                    <label>Activity History</label>
+                                    <p>
+                                    <table class="table table-bordered table-responsive  table-condensed">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tr>
+                                            <td>06/20/2014 12:11am</td>
+                                            <td>Candidate Screened</td>
+                                        </tr>
+                                        <tr>
+                                            <td>06/10/2014 12:11am</td>
+                                            <td>Client Responded</td>
+                                        </tr>
+                                        <tr>
+                                            <td>06/02/2014 12:11am</td>
+                                            <td>Job Submitted</td>
+                                        </tr>
+                                        <tr>
+                                            <td>06/01/2014 12:11am</td>
+                                            <td>Job Added</td>
+                                        </tr>
+                                        <tbody>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </accordion-group>
+                        <accordion-group class="ui-accordion-info" heading="Job 2 - Java Developer@ACI,   #Dice,   New@4/5/2014" is-open="false">
+                            <div class="col-md-8">
+                                <table class="table table-bordered table-responsive  table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Vendor</th>
+                                            <th>Contact Phone</th>
+                                            <th>Contact Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>Valiantica: Pooja</td>
+                                        <td><a>510-231-2345</a></td>
+                                        <td><a href="mailto:xyz@valiantica.com?Subject=Follow%20on%20my%20consultant&body=Dear%20Job%20Manager,%0A%0AI%20am20happy%20to%20submit%20my%20consultant" target="_top">xyz@valiantica.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan=3>URL</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=3><a href="http://www.dice.com/job/result/10121577/Java?src=19&q=java" target="_blank">http://www.dice.com/job/result/10121577/Java?src=19&q=java</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan=3>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=3><textarea disabled rows="6" cols="105">Job Description</textarea></td>
+                                    </tr>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                                <input value="" placeholder="Submitted Annual Salary">&nbsp;or&nbsp;
+								<input value="" placeholder="Submitted Hourly Rate">&nbsp;
+								<button type="submit" class="btn btn-sm btn-info">Submit John Smith</button>&nbsp;
+                                &nbsp <button type="submit" class="btn btn-sm btn-info">Not A Match</button>
+                            </div>
+                        </accordion-group>
+                        <accordion-group class="ui-accordion-danger" heading="Job 3 - Java Developer@XYZ,   #Monster,   Rejected@4/1/2014" is-open="false">
+                            <div class="col-md-8">
+                                <table class="table table-bordered table-responsive  table-condensed">
+                                    <thead>
+                                        <tr>
+                                            <th>Vendor</th>
+                                            <th>Contact Phone</th>
+                                            <th>Contact Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tr>
+                                        <td>Valiantica: Pooja</td>
+                                        <td><a>510-231-2345</a></td>
+                                        <td><a href="mailto:xyz@valiantica.com?Subject=Follow%20on%20my%20consultant&body=Dear%20Job%20Manager,%0A%0AI%20am20happy%20to%20submit%20my%20consultant" target="_top">xyz@valiantica.com</a></td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan=3>URL</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=3><a href="http://www.dice.com/job/result/10121577/Java?src=19&q=java" target="_blank">http://www.dice.com/job/result/10121577/Java?src=19&q=java</td>
+                                    </tr>
+                                    <tr>
+                                        <th colspan=3>Description</th>
+                                    </tr>
+                                    <tr>
+                                        <td colspan=3><textarea disabled rows="6" cols="105">Job Description</textarea></td>
+                                    </tr>
+                                    <tbody>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </accordion-group>
+                    </accordion>
+                </div>
+            </div>
+        </div>		
+
+    </section>
+
+</div>

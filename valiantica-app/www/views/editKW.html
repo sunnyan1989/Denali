@@ -1,0 +1,20 @@
+<form  class="form-horizontal form-validation" name="forms.keywords" ng-submit="submit(keywords)" novalidate>
+    <div class="modal-header">
+        <h4>Edit Keywords</h4>
+    </div>
+
+    <div class="modal-body panel-body">
+
+        <div class="form-group">
+            <div class="col-sm-12">
+                <textarea class="form-control" data-ng-model="keywords.keyword" rows="4" required></textarea>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <button class="btn btn-primary" type="submit" data-ng-disabled="!forms.keywords.$valid">Save</button>
+        <input type="hidden" ng-model="keywords.sid" class="form-control input-sm">
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>

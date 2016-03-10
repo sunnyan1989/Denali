@@ -1,0 +1,158 @@
+<div class="page page-table">
+
+    <section class="panel panel-default table-dynamic">
+        <div class="panel-heading"><strong><span class="glyphicon glyphicon-th"></span> Candidate List</strong></div>
+        <div class="panel-body">
+            <div class="row container">
+                <form class="form-inline" role="form" data-ng-submit="search(searchKeys)">
+                    <div class="form-group">
+                        <select class="form-control input-sm" data-ng-model="curStatus" data-ng-options="status.name for status in statusData">
+                        </select>
+                    </div>&emsp;
+                    <div class="form-group">
+                        <input class="form-control input-sm" name="name" placeholder="Name" data-ng-model="searchKeys.name">
+                    </div>&emsp;
+                    <div class="form-group">
+                        <input type="text" class="form-control input-sm" id="state" placeholder="State" data-ng-model="searchKeys.state">
+                    </div>&emsp;
+
+                    <button type="submit" class="btn btn-sm btn-info"><span class="glyphicon glyphicon-search"></span></button>
+                </form>
+            </div>
+            <div class="row" data-ng-controller='TableCtrl'>	
+                <div class="table-filters">
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <a href="#/candidates/new" class="btn btn-sm btn-w-md btn-gap-v btn-primary active_button">New</a>
+                        </div>
+                        <div class="col-sm-offset-8 col-sm-4">
+                            <form>
+                                <input type="text"
+                                       placeholder="search"
+                                       class="form-control input-sm"
+                                       data-ng-model="filterKeywords"
+                                       data-ng-keyup="filterData()">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-bordered table-striped table-responsive table-condensed" my-table-data="candidateData">
+                    <thead>
+                        <tr class="bg-dark"> 
+                            <th><div class="th"></div></th>
+                <th><div class="th">
+                        Status
+                    </div></th>
+                    <th><div class="th">Picture
+                    </div></th>
+                    
+                    <th><div class="th">
+                        Name
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('name')"
+                              data-ng-class="{active: row == 'name'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('-name')"
+                              data-ng-class="{active: row == '-name'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        State
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('state')"
+                              data-ng-class="{active: row == 'state'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('-state')"
+                              data-ng-class="{active: row == '-state'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        Primary Cell Phone
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('PrimaryCellPhone')"
+                              data-ng-class="{active: row == 'PrimaryCellPhone'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('-PrimaryCellPhone')"
+                              data-ng-class="{active: row == '-PrimaryCellPhone'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        Primary Home Phone
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('PrimaryHomePhone')"
+                              data-ng-class="{active: row == 'PrimaryHomePhone'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('-PrimaryHomePhone')"
+                              data-ng-class="{active: row == '-PrimaryHomePhone'}"></span>
+                    </div></th>
+                    <th><div class="th">
+                        Primary Personal Email
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('PrimaryPersonalEmail')"
+                              data-ng-class="{active: row == 'PrimaryPersonalEmail'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('-PrimaryPersonalEmail')"
+                              data-ng-class="{active: row == '-PrimaryPersonalEmail'}"></span>
+                    </div></th>
+
+                    <th><div class="th">
+                        Primary Work Email
+                        <span class="glyphicon glyphicon-chevron-up"
+                              data-ng-click=" order('PrimaryWorkEmail')"
+                              data-ng-class="{active: row == 'PrimaryWorkEmail'}"></span>
+                        <span class="glyphicon glyphicon-chevron-down"
+                              data-ng-click=" order('-PrimaryWorkEmail')"
+                              data-ng-class="{active: row == '-PrimaryWorkEmail'}"></span>
+                    </div></th>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="singleData in currentPageData">
+                            <td><a href="#/candidates/edit/{{singleData.sid}}"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td>{{singleData.Status}}</td>
+                            <td><img alt="Profile Picture" data-ng-src="{{singleData.picturelink?singleData.picturelink:'/files/profiles/1/default_profile.jpg'}}" style="height:26px; max-width:26px;"></td>
+                            <td>{{singleData.name}}</td>
+                            <td>{{singleData.state}}</td>
+                            <td>{{singleData.PrimaryCellPhone}}</td>
+                            <td>{{singleData.PrimaryHomePhone}}</td>
+                            <td>{{singleData.PrimaryPersonalEmail}}</td>
+                            <td>{{singleData.PrimaryWorkEmail}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <footer class="table-footer" ng-show="!no_result_found">
+                    <div class="row">
+                        <div class="col-md-6 page-num-info">
+                            <span>
+                                Show 
+                                <select data-ng-model="numPerPage"
+                                        data-ng-options="num for num in numPerPageOpt"
+                                        data-ng-change="onNumPerPageChange()">
+                                </select> 
+                                entries per page
+                            </span>
+                        </div>
+                        <div class="col-md-6 text-right pagination-container">
+                            <pagination class="pagination-sm"
+                                        page="currentPage"
+                                        total-items="filteredData.length"
+                                        max-size="4"
+                                        on-select-page="select(page)"
+                                        items-per-page="numPerPage"
+                                        rotate="false"
+                                        boundary-links="true"></pagination>
+                        </div>
+                    </div>
+                </footer>
+
+            </div>
+        </div>
+
+        <div class="table-filters" ng-show="no_result_found" style="font-size: 15px;">
+            <span data-i18n="This candidate list is currently empty."></span>
+        </div>
+
+        <div class="page-loading" ng-show="page_ishow">
+            <img alt="Please Wait..." data-ng-src="images/loading.gif">
+        </div>
+    </section>
+
+</div>

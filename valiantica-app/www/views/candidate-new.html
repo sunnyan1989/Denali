@@ -1,0 +1,282 @@
+<div class="page page-table">
+
+    <!-- Collapse -->
+    <section class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-th"></span> <span ng-show="!person">New</span><span ng-show="person.name">View</span> Candidate</div>
+
+        <!-- start Base Information -->
+        <div class="panel-body">
+            <div class="row base_information_panel">
+                <form name="baseInfoForm"  class="form-horizontal form-validation" novalidate ng-submit="submit(person)">
+                    <div class="col-sm-2" style="padding-left: 30px; width: 200px;">
+                        <div class="form-group">
+                            <img alt="Profile Picture" data-ng-src="{{person.picturelink?person.picturelink:'/files/profiles/1/default_profile.jpg'}}" style="height:202px; max-width:180px;">
+                            <div style="position: absolute; margin-top: -190px; padding-left: 10px; background-color: #faf2cc;">{{uploader.queue[uploader.queue.length - 1].file.name}}</div>
+                        </div>
+                        <div class="form-group" style="text-align: center;">
+                            <input type="file" title="Choose Your Photo" nv-file-select uploader="uploader" filters="imageFilter" data-ui-file-upload class="btn-primary btn-sm" onchange="angular.element(this).scope().NameUpdate()" >
+                        </div>
+                    </div>
+                    <div class="col-sm-6">
+                        <table class="table table-responsive table-condensed mypersontable">
+                            <tr>
+                                <th>Name</th>
+                                <td>
+                                    <input type="text" class="form-control input-sm" style="width:300px;" data-ng-model="person.name" required ng-pattern="/^[a-zA-Z0-9- ]*$/" ng-change="NameUpdate()" >
+                                </td>   
+                            </tr>
+                            <tr>
+                                <th><label>Sex</label></th>
+                                <td>
+                                    <label class="ui-radio"><input class="input-sm" ng-model="person.sex" type="radio" value="F" ng-checked="true" ng-change="NameUpdate()"><span>Female</span></label>
+                                    <label class="ui-radio"><input class="input-sm" ng-model="person.sex" type="radio" value="M" ng-change="NameUpdate()"><span>Male</span></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Marital Status</th>
+                                <td>
+
+                                    <label class="ui-radio"><input class="input-sm" ng-model="person.maritalstatus" type="radio" value="A" ng-checked="true" ng-change="NameUpdate()"><span>N/A</span></label>
+                                    <label class="ui-radio"><input class="input-sm" ng-model="person.maritalstatus" type="radio" value="Y" ng-change="NameUpdate()"><span>Yes</span></label>
+                                    <label class="ui-radio"><input class="input-sm" ng-model="person.maritalstatus" type="radio" value="N" ng-change="NameUpdate()"><span>No</span></label>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><label>Birthday</label></th>
+                                <td><div data-ng-controller="DatepickerDemoCtrl">
+                                        <div class="input-group ui-datepicker">
+                                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                            <input type="text" 
+                                                   style="width:262px;"
+                                                   class="form-control ui-datepicker input-sm"
+                                                   placeholder=""
+                                                   datepicker-popup="MM/dd/yyyy"
+                                                   ng-model="person.birthday"
+                                                   close-text="Close" ng-change="NameUpdate()">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>Birth Place</th>
+                                <td><input type="text" ng-model="person.birthplace" class="form-control input-sm" style="width:300px;" ng-change="NameUpdate()"></td>
+                            </tr>
+                            <tr>
+                                <th>Linkedin</th>
+                                <td><input type="text" ng-model="person.linkedin" class="form-control input-sm" ng-change="NameUpdate()" style="width:300px; float: left;"><a ng-show="person.linkedin" style="float: left; padding: 6px 5px; margin-left: 8px;" target="_blank" href="{{person.linkedin}}" class="btn-primary">GO</a></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4" style="text-align: center;">
+
+                                    <input type="hidden" ng-model="person.candidate_sid">
+                                    <button class="btn btn-primary" type="submit" data-ng-disabled="!baseInfoForm.$valid || !editName">Save</button>
+                                    <button class="btn btn-warning" type="button" ng-click="reset()" style="margin-left: 20px;">Cancel</button>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </div>
+                </form>
+
+            </div>            
+        </div>
+        <!-- end Base Information -->
+
+        <!-- start Contact -->
+        <div class="panel-body" data-ng-controller="CollapseContact">
+            <span class="vlabel-box candidates-title bg-dark">Contact</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="open([])">add</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="togglecollapse()">{{!custom ? 'primary only' : 'show all ( '+contactData.length+' )'}}</span>
+            <div class="height5"></div>
+            <div>
+                <table class="table table-bordered table-responsive table-condensed">
+                    <thead>
+                        <tr class="bg-dark">
+                            <th>#</th>
+                            <th>Cell Phone</th>
+                            <th>Home Phone</th>
+                            <th>Work Phone</th>
+                            <th>Personal Email</th>
+                            <th>Work Email</th>
+                            <th>Home Address</th>
+                            <th>Primary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-class="custom" data-ng-repeat="singleContact in contactData" ng-show="custom && $index < 1 || !custom">
+                            <td><a href="javascript:;" ng-click="open(singleContact)"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td>{{singleContact.phone_cell}}</td>
+                            <td>{{singleContact.phone_home}}</td>
+                            <td>{{singleContact.phone_work}}</td>
+                            <td><span ng-show="singleContact.email_personal !== 'null'">{{singleContact.email_personal}}</span></td>
+                            <td><span ng-show="singleContact.email_work !== 'null'">{{singleContact.email_work}}</span></td>
+                            <td><span ng-show="singleContact.address">{{singleContact.address}}, </span>{{singleContact.state}} {{singleContact.zipcode}} {{singleContact.country}}</td>
+                            <td>{{singleContact.isprimary ? 'Yes' : 'No'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!-- end Contact -->
+
+
+        <!-- start Skills -->
+        <div class="panel-body" data-ng-controller="CollapseSkills">
+            <span class="vlabel-box candidates-title bg-dark">Skills</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="open([])">add</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="togglecollapse()">{{!custom ? 'primary only' : 'show all ( '+skillsData.length+' )'}}</span>
+            <div class="height5"></div>
+            <div class="ui-tab-container ui-tab-info">
+
+                <tabset class="ui-tab">
+                    <tab heading="{{singleSkill.name}}" data-ng-repeat="singleSkill in skillsData" ng-show="custom && $index < 1 || !custom">
+                        <div><a href="javascript:;" ng-click="open(singleSkill)"><span class="glyphicon glyphicon-edit"></span></a></div>
+                        <table style="width: 60%;" class="table table-responsive mypersontable table-condensed">
+                            <tr>
+                                <th>Job Type</th>
+                                <td style="border-top: 0px!important;">{{singleSkill.jobtype}}</td>                  
+                                <th><label>Employment Type</label></th>
+                                <td>{{singleSkill.employmenttype}}</td>
+                            </tr>
+                            <tr>
+                                <th><label>Location Zip</label></th>
+                                <td>{{singleSkill.locationzip}}</td>
+                                <th>Resume</th>
+                                <td><a href="{{singleSkill.resumelink}}" target="_blank"><span class="glyphicon glyphicon-list-alt" style="font-size: 22px;"></span></a></td>
+                            </tr>
+                            <tr>
+                                <th><label>Keywords</label></th>
+                                <td colspan="3"><textarea disabled rows="1" cols="80">{{singleSkill.keywords}}</textarea></td>
+                            </tr>
+                            <tr>
+                                <th><label>Description</label></th>
+                                <td colspan="3"><textarea disabled rows="4" cols="80">{{singleSkill.description}}</textarea></td>
+                            </tr>
+                            <tr>
+                                <th><label>Hourly Rate</label></th>
+                                <td ng-show="singleSkill.hourlyrate_desired !== 'null' && singleSkill.hourlyrate_desired !== '0'">{{singleSkill.hourlyrate_desired}}</td>
+                                <td ng-show="singleSkill.hourlyrate_desired === 'null' && singleSkill.hourlyrate_desired === '0'">&nbsp;</td>
+                                <th>Annual Salary</th>
+                                <td ng-show="singleSkill.annualsalary_desired !== 'null' && singleSkill.annualsalary_desired !== '0'">{{singleSkill.annualsalary_desired}}</td>
+                                <td ng-show="singleSkill.annualsalary_desired === 'null' && singleSkill.annualsalary_desired === '0'">&nbsp;</td>
+                            </tr>
+                            <tr>                               
+                                <th><label>Primary</label></th>
+                                <td>{{singleSkill.isprimary ? 'Yes' : 'No'}}</td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </table>
+                    </tab>
+                </tabset>
+
+            </div>            
+        </div>
+        <!-- end Skills -->
+
+        <!-- start Employment -->
+        <div class="panel-body" data-ng-controller="CollapseEmployment">
+            <span class="vlabel-box candidates-title bg-dark">Employment</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="open([])">add</span>&nbsp;
+            <div class="height5"></div>
+            <div collapse="isCollapsed">
+                <table class="table table-bordered table-striped table-responsive table-condensed">
+                    <thead>
+                        <tr class="bg-dark">
+                            <th>#</th>
+                            <th>Employer</th>
+                            <th>Title</th>
+                            <th>Job Type</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="singleEmployment in employmentData">
+                            <td><a href="javascript:;" ng-click="open(singleEmployment)"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td>{{singleEmployment.name}}</td>
+                            <td>{{singleEmployment.title}}</td>
+                            <td>{{singleEmployment.job}}</td>
+                            <td>{{singleEmployment.startdate| date:'MM/dd/yyyy'}}</td>
+                            <td>{{singleEmployment.enddate| date:'MM/dd/yyyy'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+        </div>
+        <!-- end Employment -->
+
+        <!-- start Education -->
+        <div class="panel-body" data-ng-controller="CollapseEducation">
+            <span class="vlabel-box candidates-title bg-dark">Education</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="open([])">add</span>&nbsp;
+            <div class="height5"></div>
+            <div collapse="isCollapsed">
+                <table class="table table-bordered table-striped table-responsive  table-condensed">
+                    <thead>
+                        <tr class="bg-dark">
+                            <th>#</th>
+                            <th>Degree</th>
+                            <th>Major</th>                            
+                            <th>Institute</th>
+                            <th>Graduation Date</th>
+                            <th>Graduation Country</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-class="custom" data-ng-repeat="singleEducation in educationData">
+                            <td><a href="javascript:;" ng-click="open(singleEducation)"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td>{{singleEducation.degree}}</td>
+                            <td>{{singleEducation.major}}</td>                          
+                            <td>{{singleEducation.graduationinstitute}}</td>
+                            <td>{{singleEducation.graduationdate| date:'MM/dd/yyyy'}}</td>
+                            <td>{{singleEducation.graduationcountry}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>            
+        </div>
+        <!-- end Education -->
+
+        <!-- start Legal Status -->
+        <div class="panel-body" data-ng-controller="CollapseLegalStatus">
+            <span class="vlabel-box candidates-title bg-dark">Legal Status</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="open([])">add</span>&nbsp;
+            <span class="mleft6 a_cursor a_underline candidates-action-letter" ng-click="togglecollapse()">{{!custom ? 'primary only' : 'show all ( '+legalData.length+' )'}}</span>
+            <div class="height5"></div>
+            <div collapse="isCollapsed">
+                <table class="table table-bordered table-striped table-responsive  table-condensed">
+                    <thead>
+                        <tr class="bg-dark">
+                            <th>#</th>
+                            <th>Type</th>
+                            <th>ID Number</th>
+                            <th>Country</th>
+                            <th>Start Date</th>
+                            <th>End Date</th>
+                            <th>Sponsor Business</th>
+                            <th>Primary</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr data-ng-repeat="singleLegalType in legalData" ng-show="custom && $index < 1 || !custom">
+                            <td><a href="javascript:;" ng-click="open(singleLegalType)"><span class="glyphicon glyphicon-edit"></span></a></td>
+                            <td>{{singleLegalType.legalstatus}}</td>
+                            <td>{{singleLegalType.ID}}</td>
+                            <td>{{singleLegalType.country}}</td>
+                            <td>{{singleLegalType.startdate| date:'MM/dd/yyyy'}}</td>
+                            <td>{{singleLegalType.enddate| date:'MM/dd/yyyy'}}</td>
+                            <td>{{singleLegalType.sponsorbusiness}}</td>
+                            <td>{{singleLegalType.isprimary ? 'Yes' : 'No'}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </div>            
+        </div>
+        <!-- end Legal Status -->
+
+    </section>
+    <!-- end Collapse -->
+
+</div>

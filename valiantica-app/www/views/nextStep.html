@@ -1,0 +1,42 @@
+<!-- start new of contact -->
+<div class="modal-header">
+    <h3><span data-i18n="Change Job Status"></span></h3>
+</div>
+<form class="form-horizontal" id="nextStep" name="addCMForm">
+    <div class="modal-body panel-body">
+        <div class="form-group">
+            <div class="col-sm-12">
+                <table class="table table-bordered table-responsive table-condensed">
+                    <tr class="bg-dark">
+                        <td>
+                            <label>Next Step<span class="star">*</span></label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <select data-ng-model="job.nextStep" required="true" style="width:100px;" class="form-control input-sm">
+                                <option ng-show="status.sid!==8" data-ng-repeat="status in job.statusList" value="{{status.sid}}">{{status.name}}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    
+                    <tr class="bg-dark">
+                        <td>
+                            <label>Note<span class="star">*</span></label> 
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <textarea class="form-control" placeholder="" data-ng-model="job.note_i" rows="3" required></textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="submit(job)" data-ng-disabled="!addCMForm.$valid">Save</button>
+        <button type="button" class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end new of contact -->

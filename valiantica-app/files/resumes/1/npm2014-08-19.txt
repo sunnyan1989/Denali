@@ -1,0 +1,16 @@
+npm install -g nvmw
+
+npm install express -gd
+
+npm install -g package
+
+
+cd ~
+express testapp
+cd testapp
+node app.js
+
+ctrl+c (edit node)
+
+
+cd ${workingdir} && node ${selectedfile}

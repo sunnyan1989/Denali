@@ -1,0 +1,93 @@
+        
+<div id="nav-wrapper">
+    <ul id="nav"
+        data-slim-scroll
+        data-collapse-nav
+        data-highlight-active>
+        <li><a href="#/dashboard"> <i class="fa fa-dashboard"></i><span data-i18n="Dashboard"></span> </a></li>
+        <li ng-show="isglobaladmin">
+            <a href="#/tenants"><i class="fa fa-wrench"></i><span data-i18n="Global Admin"></span></a>
+            <ul>
+                <li><a href="#/tenants"><i class="fa fa-caret-right"></i><span data-i18n="Company List"></span></a></li>
+            </ul>
+        </li>
+        <li ng-show="istenantadmin || isglobaladmin">
+            <a href="#/users"><i class="fa fa-building-o"></i><span data-i18n="Company Admin"></span></a>
+            <ul>
+                <li><a href="#/users"><i class="fa fa-caret-right"></i><span data-i18n="User List"></span></a></li>
+                <li><a href="#/tenant-profile"><i class="fa fa-caret-right"></i><span data-i18n="Company Profile"></span></a></li>				
+            </ul>
+        </li>
+        <li ng-show="isManager || isMarketing || isglobaladmin || istenantadmin">
+            <a href="#/candidates"><i class="fa fa-external-link"></i><span data-i18n="Candidate Marketing"></span></a>
+            <ul class="mycandidates">
+                <li ng-show="isManager || isglobaladmin || istenantadmin"><a href="#/candidates"><i class="fa fa-caret-right"></i><span data-i18n="Candidate List"></span></a></li>
+                <li ng-show="isManager || isglobaladmin || istenantadmin"><a href="#/candidates/hotlist"><i class="fa fa-caret-right"></i><span data-i18n="Hot List"></span></a></li>
+                <li ng-show="isMarketing || isglobaladmin || istenantadmin"><a href="#/candidates/my-candidates"><i class="fa fa-caret-right"></i><span data-i18n="My Candidates"></span></a></li>
+            </ul>
+        </li>
+        <li ng-show="isSales || isglobaladmin || istenantadmin">
+            <a href="#/directsales"><i class="fa fa-external-link-square"></i><span data-i18n="Direct Sales"></span></a>
+            <ul class="mydirectsales">
+                <li><a href="#/directsales"><i class="fa fa-caret-right"></i><span data-i18n="Requirements"></span></a></li>
+                <li><a href="#/directsales/reqlist"><i class="fa fa-caret-right"></i><span data-i18n="Req List"></span></a></li>
+                <li><a href="#/directsales/my-directsales"><i class="fa fa-caret-right"></i><span data-i18n="My Requirements"></span></a></li>
+                <li><a href="#/directsales"><i class="fa fa-caret-right"></i><span data-i18n="Clients"></span></a></li>
+            </ul>
+        </li>
+        <li ng-show="isglobaladmin || istenantadmin">
+            <a href="#/consultants"><i class="fa fa-users"></i><span data-i18n="Consultants"></span></a>
+            <ul>
+                <li><a href="#/consultants"><i class="fa fa-caret-right"></i><span data-i18n="My Profile"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="My Job Search"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="My Timesheets"></span></a></li>
+            </ul>
+        </li>
+        <li ng-show="isglobaladmin || istenantadmin">
+            <a href="#/hr"><i class="fa fa-tasks"></i><span data-i18n="HR"></span></a>
+            <ul>
+                <li><a href="#/hr"><i class="fa fa-caret-right"></i><span data-i18n="CM Onboard"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="Req Onboard"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="CM Deboard"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="Req Deboard"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="Immigration"></span></a></li>
+            </ul>
+        </li>
+        <li ng-show="isAccounting || istenantadmin">
+            <a href="#/accounting"><i class="fa fa-dollar"></i><span data-i18n="Accounting"></span></a>
+            <ul>
+                <li><a href="#/accounting"><i class="fa fa-caret-right"></i><span data-i18n="Timesheets"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="Contracts"></span></a></li>
+                <li><a href="#/"><i class="fa fa-caret-right"></i><span data-i18n="Invoices"></span></a></li>
+            </ul>
+        </li>
+
+        <!--<li>
+            <a href="#/reports"><i class="fa fa-table"></i><span data-i18n="Reports"></span></a>
+            <ul>
+                <li>
+                    <a href="#"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist"></span></a>
+                    <ul>
+                        <li><a href="#/reports/hotlist_by_cand"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Activity by Candidates"></span></a></li>
+                        <li><a href="#/reports/hotlist_by_cm"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Activity by CM"></span></a></li>
+                        <li><a href="#/reports/hotlist_by_vendor"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Activity by Vendor"></span></a></li>
+                    </ul>
+                </li>
+
+            </ul>
+        </li>-->
+
+        <li>
+            <a href="#/reports"><i class="fa fa-table"></i><span data-i18n="Reports"></span></a>
+            <ul>
+                <li><a href="#/reports/hotlist_by_cand"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Activity by Candidates"></span></a></li>
+                <li><a href="#/reports/hotlist_by_cm"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Activity by CM"></span></a></li>
+                <li><a href="#/reports/hotlistdetails_by_cm"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Details by CM"></span></a></li>
+                <li><a href="#/reports/hotlist_by_vendor"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Activity by Vendor"></span></a></li>
+                <!--<li><a href="#/reports/hotlist_candidate_analysis"><i class="fa fa-caret-right"></i><span data-i18n="Hotlist Candidate Analysis"></span></a></li>-->
+            </ul>
+        </li>
+
+    </ul>
+
+</div>

@@ -1,0 +1,97 @@
+<!-- Modal -->
+<form name="forms.jobForm" id="jobForm" class="form-horizontal form-validation" novalidate>
+    <div class="modal-header">
+        <h4>New Job for {{candidateName}}</h4>
+    </div>
+    <div class="modal-body panel-body">
+
+        <table class="table table-bordered table-responsive table-condensed job-detail-table-margin">
+
+            <tr>
+                <th class="bg-dark" colspan="4">Job Link</th>
+            </tr>
+
+            <tr>
+                <td colspan="4"><input data-ng-disabled="master.JobDescription_sid" type="text" class="form-control input-sm joblink" placeholder="" data-ng-model="master.joblink" data-ng-keyup="clearChar()" style="float: left; width: 88%!important;">
+                    <button ng-show="!master.JobDescription_sid" class="btn btn-success" ng-click="getData(master.joblink)" style="margin-left: 10px;" ><span ng-bind="getDataFrom"></span></button>
+                    <p ng-show="master.alertmessage" style="clear:both;" class="red">We can't import data to the highlight fields below, Please add them yourself.</p>
+                    <p ng-show="master.uplicatemessage" style="clear:both;" class="red">{{master.uplicatemessage}}</p>
+                </td>
+            </tr>
+
+            <tr class="bg-dark">
+                <th>Title<span class="star">*</span></th>
+                <th>Client</th>
+                <th>ID</th>
+                <th>Source</th>
+            </tr>
+            <tr>
+                <td> <input type="text" class="form-control input-sm" placeholder="" data-ng-model="master.title" required></td>
+                <td>
+                    <div class="padded-row"><jobautocomplete id="client" placeholder="" selectvalue="{{master.client}}" pause="300" selectedobject="selectedClient" localdata="client" searchfields="client" titlefield="client" minlength="1" inputclass="form-control form-control-small {{master.checkclient}}" matchclass="highlight" /></div>
+                    <input type="hidden" ng-model="master.client">
+                </td>
+                <td><input type="text" class="form-control input-sm" placeholder="" data-ng-model="master.ID"></td>
+                <td>
+                    <div class="padded-row"><jobautocomplete id="source" placeholder="" selectvalue="{{master.source}}" pause="300" selectedobject="selectedSource" localdata="source" searchfields="source" titlefield="source" minlength="1" inputclass="form-control form-control-small" matchclass="highlight" /></div>
+                    <input type="hidden" ng-model="master.source">
+                </td>
+
+            </tr>
+            <tr class="bg-dark">
+                <th>Vendor Company</th>
+                <th>Vendor Contact</th>
+                <th>Vendor Email</th>
+                <th>Vendor Phone</th>
+            </tr>
+
+            <tr>
+                <td>
+                    <div class="padded-row"><jobautocomplete id="vendor" placeholder="" selectvalue="{{master.vendor}}" pause="300" selectedobject="selectedVendor" localdata="vendor" searchfields="vendor" titlefield="vendor" minlength="1" inputclass="form-control form-control-small {{master.checkvendor}}" matchclass="highlight" /></div>
+                    <input type="hidden" ng-model="master.vendor">
+                </td>
+                <td><input type="text" id="checkcontact" class="form-control input-sm {{master.checkcontact}}" placeholder="" data-ng-model="master.vendorcontact"></td>
+                <td><input type="email" id="checkemail" class="form-control input-sm {{master.checkemail}}" placeholder="" data-ng-model="master.vendoremail"></td>
+                <td><input type="text" id="checkphone" class="form-control input-sm {{master.checkphone}}" placeholder="" data-ng-model="master.vendorphone"></td>
+            </tr>
+
+            <tr>
+                <th class="bg-dark" colspan="4">Keywords<span class="star">*</span></th>
+            </tr>
+
+            <tr>
+                <td colspan="4"><input type="text" class="form-control input-sm {{master.checkkeywords}}" placeholder="" data-ng-model="master.keywords" required></td>
+            </tr>
+
+            <tr>
+                <th class="bg-dark" colspan="4">Description</th>
+            </tr>
+
+            <tr>
+                <td colspan="4">
+                    <textarea class="form-control" placeholder="" data-ng-model="master.description" rows="3"></textarea>
+                </td>
+            </tr>
+
+            <tr>
+                <th colspan="4">Salary</th>
+            </tr>
+
+            <tr>
+                <td colspan="4">
+                    <label class="ui-radio" style="margin-top: 6px; float: left;"><input class="input-sm" name="salarytype" data-ng-model="master.salarytype" type="radio" value="hourlyRate" ng-checked="true"><span>Hourly Rate</span></label>
+                    <label class="ui-radio" style="margin-top: 6px; float: left;"><input class="input-sm" name="salarytype" data-ng-model="master.salarytype" type="radio" value="annualSalary"><span>Annual Salary</span></label>
+                    <input type="text" style="width:120px; float: left; margin-left: 10px; margin-top: 3px;" class="form-control input-sm" placeholder="" data-ng-model="master.salary">
+                </td>
+            </tr>
+
+        </table>
+    </div>
+    <div class="modal-footer my-modal-footer">
+        <input type="hidden" data-ng-model="master.JobDescription_sid">
+        <button ng-show="master.fristStep || (!master.JobDescription_sid && !master.fristStep)" class="btn btn-success" ng-click="save('both')" data-ng-disabled="!forms.jobForm.$valid">Save and Submit</button>
+        <button class="btn btn-success" ng-click="save('save')" data-ng-disabled="!forms.jobForm.$valid">Save</button>
+        <button class="btn btn-warning" ng-click="cancel()">Cancel</button>
+    </div>
+</form>
+<!-- end Modal -->
